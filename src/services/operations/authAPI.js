@@ -5,7 +5,8 @@ import { endpoints } from "../apis";
 import { apiConnector } from "../apiconnector";
 
 const{
-    LOGIN_API
+    LOGIN_API,
+    SIGNUP_API
 } = endpoints
 
 
@@ -31,6 +32,7 @@ export function login(email,password,navigate){
 
             localStorage.setItem("token", JSON.stringify(response.data.token))
             localStorage.setItem("user", JSON.stringify(response.data.user));
+            
             navigate("/dashboard")
             toast.dismiss(loadingToast);
             toast.success("Login Successful")
@@ -42,6 +44,33 @@ export function login(email,password,navigate){
             toast.error("Login Failed")
         }
        
+    }
+}
+
+export function signup(email,password,confirmPassword,AccountType,navigate){
+    const loadingToast = toast.loading("Loading...");
+    return async()=>{
+        try{
+            const response = await apiConnector('POST',SIGNUP_API,{
+                email,
+                password,
+                confirmPassword,
+                AccountType
+            })
+            console.log('SIGNUP API RESPONSE......',response)
+
+            if(!response.data.success){
+                throw new Error(response.data.message)
+            }
+
+            navigate('/login')
+            toast.dismiss(loadingToast)
+            toast.success("SignUp successful")
+        }catch(error){
+            console.log('SIGNUP API ERROR...' ,error)
+            toast.dismiss(loadingToast)
+            toast.error('SingUp Failed')
+        }
     }
 }
 export function logout(navigate) {

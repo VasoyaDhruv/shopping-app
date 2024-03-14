@@ -1,24 +1,40 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import logo from "../../assets/images.png"
-import { Link, Navigate, useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import toast from 'react-hot-toast'
-import { logout } from '../../services/operations/authAPI'
+import { Link  } from 'react-router-dom'
+import {  useSelector } from 'react-redux'
+import profileImg from "../../assets/836.jpg"
+import { ACCOUNT_TYPE } from '../../utils/contants'
+import {  AiOutlineShoppingCart } from "react-icons/ai"
 
 const Navbar = () => {
-  const dispatch = useDispatch()
-  const navigate = useNavigate();
+  const [menuVisible, setMenuVisible] = useState(false);
+  const menuRef = useRef(null);
+
   const token = useSelector((state) => state.auth.token)
   const user = useSelector((state) => state.profile.user)
-  
+  const totalItems = useSelector((state) => state.cart)
+ 
 
-  const handleLogout = () => {
-    dispatch(logout(navigate));
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setMenuVisible(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  const toggleMenu = () => {
+    setMenuVisible(!menuVisible);
   };
-
   return (
     
-<nav className="bg-white border-gray-200 dark:bg-gray-900 fixed top-0 right-0 left-0 ">
+<nav className="bg-white border-gray-200 dark:bg-gray-900 fixed top-0 right-0 left-0 z-10">
   <div className="max-w-screen-xl flex  items-center justify-between mx-auto p-4">
   <Link to="/" className='flex items-center space-x-3 rtl:space-x-reverse'>
       <img src={logo} className=" rounded-full w-10 h-10" alt="Flowbite Logo" />
@@ -45,7 +61,19 @@ const Navbar = () => {
     </ul>
   </div>
    <div className=" flex gap-4 items-center  ">
-      
+     {
+      user && user.AccountType !== ACCOUNT_TYPE.BUSINESS && (
+        <Link to='/cart' className='relative'>
+          <AiOutlineShoppingCart className="text-2xl text-gray-100" />
+          {totalItems > 0 && (
+            <span >
+              {totalItems}
+            </span>
+          )}
+        </Link>
+      )
+     }  
+    
      {
       token === null &&(
         <Link to="/login">
@@ -62,22 +90,20 @@ const Navbar = () => {
         </Link>
       )
      }
-     {
+     
+
+
+    {
       token !== null &&(
-        <Link to="/cart">
-          <button className='text-white  rounded-[8px] bg-gray-500 hover:bg-gray-600 duration-200 
-          py-[8px] px-[30px] font-medium text-richblack-900'>cart</button>
-        </Link>
+        <div className='relative h-10 w-10' ref={menuRef} >
+        <img className='rounded-full border border-gray-100 profile cursor-pointer' src={profileImg} alt="" onClick={toggleMenu} />
+        <ul className={`flex flex-col absolute top-[3.3rem] right-[-20px] items-center bg-white p-2 shadow-md ${menuVisible ? "opacity-1" : "opacity-0"}`}>
+          <Link className='text-black' to="/dashboard">Dashboard</Link>
+          <Link className='text-black' to="/setting">Setting</Link>
+        </ul>
+       </div>
       )
      }  
-        {
-         token !== null &&(
-        <Link>
-          <button className='text-white  rounded-[8px] bg-gray-500 hover:bg-gray-600 duration-200 
-          py-[8px] px-[30px] font-medium text-richblack-900' onClick={handleLogout}>Log Out</button>
-        </Link>
-      )
-     }
     
       
   </div>

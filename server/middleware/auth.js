@@ -22,19 +22,19 @@ exports.auth = async (req, res, next)=>{
     }
 }
 
-exports.isSeller = async (req, res,next) =>{
+exports.isBUSINESS = async (req, res,next) =>{
     try{
-        if(req.user.AccountType !== "Seller"){
+        if(req.user.AccountType !== "BUSINESS"){
             return res.status(401).json({
                 success:false,
-                message:'This is Protected route for sellers'
+                message:'This is Protected route for BUSINESSs'
             });
         }
         next();
     }catch(error){
         return res.status(500).json({
             success:false,
-            message:"Seller is not verified.please try again "
+            message:"BUSINESS is not verified.please try again "
         })
     }
 }

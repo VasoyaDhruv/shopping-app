@@ -7,14 +7,21 @@ import Home from './pages/Home'
 import Login from './components/Login'
 import Signup from './components/Signup'
 import DashBoard from './pages/DashBoard'
-import Cart from "../src/components/core/Cart"
+
 import { useSelector } from 'react-redux'
 import PrivateRoute from './components/PrivateRoute'
 import { ACCOUNT_TYPE } from './utils/contants'
-import Records from './components/Dashboard/Records'
+import Footer from './components/Footer'
+import MyProfile from './components/Dashboard/MyProfile'
+import Settings from './components/Dashboard/Settings'
+import { Card } from '@material-tailwind/react'
+import Cart from './components/Dashboard/Cart'
+
+
 
 function App() {
-  const user = useSelector((state) => state.profile)
+  const user = useSelector((state)=>state.profile.user)
+
   return (
     <div>
      <Navbar/>
@@ -25,25 +32,32 @@ function App() {
         
         <Route path="/cart" element={<Cart/>}/>
 
-        {
-        user?.accountType === ACCOUNT_TYPE.SELLER && (
-          <>
-          <Route path="dashboard/records" element={<Records />} />
-          </>
-        )
-      }
         <Route
+        path='/dashboard'
           element={
            <PrivateRoute>
               <DashBoard/>
            </PrivateRoute>  
           }>
-        <Route path="/dashboard" element={<DashBoard/>} />
+        <Route path="dashboard/my-profile" element={<MyProfile />} />
        </Route>
+       
+       
+        {
+          user?.AccountType === ACCOUNT_TYPE.PERSONAL &&(
+            <Route path='/cart' element={<Cart/>}/>
+          )
+        }
+       {/* {
+            user?.AccountType === ACCOUNT_TYPE.BUSINESS && (
+            <>
+              <Route path="dashboard/records" element={<Records/>} />
+            </>
+          )
+        } */}
      </Routes>
 
      
-
     </div>
   )
 }

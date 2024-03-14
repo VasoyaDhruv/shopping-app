@@ -13,8 +13,8 @@ const userSchema = new mongoose.Schema({
 
     AccountType:{
         type:String,
-        enum: ['Seller', 'Customer'],
-        default: 'Customer',
+        enum: ['Business', 'Personal'],
+        default: 'Personal',
         required:true
     }
 });

@@ -1,5 +1,5 @@
 export const ACCOUNT_TYPE = {
-    SELLER: "Student",
-    CUSTOMER: "Customer",
+    BUSINESS: "Business",
+    PERSONAL: "Personal",
   }
   

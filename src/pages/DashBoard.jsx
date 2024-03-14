@@ -1,8 +1,16 @@
 import React from 'react'
+import { Avatar } from "@material-tailwind/react";
+import Sidebar from '../components/Dashboard/Sidebar'
+
 
 const DashBoard = () => {
   return (
-    <div className="text-2xl bg-slate-400 text-black w-[11/12] ">dashboard</div>
+    <div className="">
+     <div>
+     <Sidebar/>
+     </div>
+     
+    </div>
   )
 }
 
