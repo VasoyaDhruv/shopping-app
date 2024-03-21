@@ -46,7 +46,9 @@ h1 {
   line-height: 1.1;
 }
 
-
+::-webkit-scrollbar{
+  width:10px;
+}
 
 @media (prefers-color-scheme: light) {
   :root {
@@ -65,4 +67,19 @@ h1 {
   button{
     padding: 0.2em 0.6em;
   }
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
 }
