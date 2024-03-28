@@ -25,6 +25,7 @@ function App() {
   return (
     <div>
      <Navbar/>
+     
      <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/login" element={<Login/>} />
@@ -59,7 +60,7 @@ function App() {
           )
         } */}
      </Routes>
-
+ 
      
     </div>
   )

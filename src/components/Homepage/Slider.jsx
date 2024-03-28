@@ -31,16 +31,16 @@ const Slider = ({ slides, autoSlideDuration = 3000 }) => {
             key={index}
             className="slide w-full flex-shrink-0"
           >
-            <div className="container mx-auto px-4 py-8 grid grid-cols-2 gap-4 justify-between items-center">
-              <div className='pl-8'>
-              <h2 className="text-6xl font-bold mb-4 text-black">{slide.title}</h2>
+            <div className="container mx-auto px-4 py-8 grid grid-cols-1 sm:grid-cols-2 gap-4 justify-between items-center">
+              <div className='sm:pl-8 pl-0 text-center md:text-start'>
+              <h2 className="text-4xl font-bold mb-4 text-black lg:text-6xl">{slide.title}</h2>
               <p className="text-lg mb-6 text-black italic">{slide.description}</p>
               <button className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded duration-200">
                 {slide.buttonText}
               </button>
               </div>
               <div className='mix-blend-multiply flex justify-center'>
-                <img src={slide.img} className='h-96'/>
+                <img src={slide.img} className='h-[15rem] sm:h-auto max-h-96'/>
               </div>
             </div>
           </div>
