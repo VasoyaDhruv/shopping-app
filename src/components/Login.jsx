@@ -34,6 +34,7 @@ const Login = () => {
   }
 
   return (
+  <div className='container w-11/12 h-[100vh] flex justify-center items-center'>
     <div className=' bg-slate-300 shadow-md rounded-md'>
       <h3 className='text-gray-600 font-bold text-3xl flex p-5 justify-center'>Login</h3>
       <form onSubmit={handleOnSubmit} className='w-[20rem] p-3 flex flex-col justify-center'>
@@ -63,6 +64,7 @@ const Login = () => {
           >login</button>
       </form>
     </div>
+  </div>
   );
 }
 

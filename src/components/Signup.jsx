@@ -33,7 +33,8 @@ const Signup = () => {
 
 
   return (
-    <div className=' bg-slate-300 shadow-md rounded-md'>
+  <div className='container w-11/12 h-[100vh] flex justify-center items-center'>
+    <div className=' bg-slate-300 shadow-md rounded-md '>
          <h3 className='text-gray-600 font-bold text-3xl flex p-5 justify-center'>Sign Up</h3>
           <form onSubmit={handleOnSubmit} className='w-[20rem] p-3 flex flex-col justify-center'>
           <label className='text-gray-700 font-semibold gap-2 flex'>
@@ -74,6 +75,7 @@ const Signup = () => {
           >SignUp</button>
     </form>  
     </div>
+  </div>
   )
 }
 

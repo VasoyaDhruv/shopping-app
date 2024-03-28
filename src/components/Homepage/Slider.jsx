@@ -20,7 +20,11 @@ const Slider = ({ slides, autoSlideDuration = 3000 }) => {
   };
 
   return (
-    <div className="relative overflow-hidden pt-32 bg-slate-200 w-11/12 mx-auto">
+    <div className='relative w-11/12 mx-auto bg-slate-200 container'>
+       <button onClick={goToPrevSlide} className="bg-gray-500 absolute left-[-1rem] top-1/2 transform  -translate-y-1/2 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full rotate-90 w-18 h-18">
+          V
+        </button>
+    <div className=" overflow-hidden pt-32  w-11/12 mx-auto">
       <div className="slider-container flex duration-700 " style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
         {slides.map((slide, index) => (
           <div
@@ -42,14 +46,10 @@ const Slider = ({ slides, autoSlideDuration = 3000 }) => {
           </div>
         ))}
       </div>
-      <div className=" flex items-center">
-        <button onClick={goToPrevSlide} className="bg-gray-500 absolute left-0 top-1/2 transform  -translate-y-1/2 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full rotate-90 w-18 h-18">
+    </div>
+    <button onClick={goToNextSlide} className="bg-gray-500 absolute top-1/2 transform  -translate-y-1/2  right-[-1rem] hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full border-black  w-18 h-18 rotate-[270deg]">
           V
         </button>
-        <button onClick={goToNextSlide} className="bg-gray-500 absolute top-1/2 transform  -translate-y-1/2  right-0 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full border-black  w-18 h-18 rotate-[270deg]">
-          V
-        </button>
-      </div>
     </div>
   );
 };

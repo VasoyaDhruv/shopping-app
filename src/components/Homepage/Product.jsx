@@ -25,7 +25,7 @@ const Product = ({post}) => {
   
   return (
 
-<Card className="flex flex-col gap-3 p-4 hover:scale-[1.02] items-center rounded-md duration-200 mt-[3rem] border-2 ">
+<Card className=" flex flex-col gap-3 p-4 hover:scale-[1.02] items-center rounded-md duration-200  border-2 ">
 <CardHeader shadow={false} floated={false} className="flex p-5">
 <img src={post.image} className="object-fit h-[10rem]"/>
 </CardHeader>

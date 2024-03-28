@@ -35,7 +35,7 @@ const ViewCart = () => {
   };
 
   return (
-    <div className='w-11/12 mx-auto mt-28 '>
+    <div className='w-11/12 mx-auto mt-28 container'>
       <div>
         <h1 className='text-black font-bold opacity-50'>Shopping Cart</h1>
       </div>
