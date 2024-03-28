@@ -8,7 +8,7 @@ const ConfirmationModal = ({modalData}) => {
         <p className='text-black'>{modalData?.text2}</p>
         <div className='flex gap-5 mt-5 justify-center'>
         <button
-            className="cursor-pointer rounded-md bg-red-400 py-[8px] px-[20px] font-semibold text-richblack-900 text-black"
+            className="cursor-pointer rounded-md bg-red-500 py-[8px] px-[20px] font-semibold text-richblack-900 text-black"
             onClick={modalData?.btn1Handler}
           >
             {modalData?.btn1Text}

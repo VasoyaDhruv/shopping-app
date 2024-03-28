@@ -3,6 +3,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { removeFromCart } from '../../slices/cartSlice'
 import { IoMdClose } from "react-icons/io";
+import { Link } from 'react-router-dom';
 
 const Cart = ({closebtn}) => {
     const cart = useSelector((state) => state.cart.cart)
@@ -15,7 +16,7 @@ const Cart = ({closebtn}) => {
   return (
 <div>
 
-  <div className='grid pt-[5rem] fixed top-0 right-0 w-[25rem] h-[100vh] pr-2 pl-2 shadow-xl z-10 bg-white'>
+  <div className='grid pt-[2rem] fixed top-0 right-0 w-[25rem] h-[100vh] pr-2 pl-2 shadow-xl  bg-white'>
     <div className='pb-1 flex justify-between' >
     <h2 className='text-black text-2xl font-semibold opacity-70'>Shopping Cart</h2>
     <IoMdClose onClick={closebtn} className='text-black text-3xl hover:text-gray-500 duration-200'  />
@@ -45,7 +46,9 @@ const Cart = ({closebtn}) => {
       <h2>${total}</h2>
     </div>
     <div className='flex flex-col gap-2 pb-3 '>
-      <button className='p-3  w-full bg-black text-white hover:bg-blue-600 duration-200 '>View Cart</button>
+   <Link to='cart/view-cart'>
+   <button className='p-3  w-full bg-black text-white hover:bg-blue-600 duration-200 '>View Cart</button>
+   </Link>
       <button className='p-3 border-[1px] border-black w-full text-black hover:bg-blue-500 duration-200 hover:text-white hover:border-blue-500'>Checkout</button>
     </div>
     </div>

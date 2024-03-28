@@ -13,6 +13,10 @@ import PrivateRoute from './components/PrivateRoute'
 import { ACCOUNT_TYPE } from './utils/contants'
 import Footer from './components/Footer'
 import MyProfile from './components/Dashboard/MyProfile'
+import ViewCart from './components/Dashboard/ViewCart'
+import Cart from './components/Dashboard/Cart'
+import Orders from './components/Dashboard/Orders'
+
 
 
 function App() {
@@ -28,21 +32,25 @@ function App() {
 
 
         <Route
-        path='/dashboard'
           element={
            <PrivateRoute>
               <DashBoard/>
            </PrivateRoute>  
           }>
+        
         <Route path="dashboard/my-profile" element={<MyProfile />} />
+        <Route path="dashboard/orders" element={<Orders />} />
        </Route>
+
+
        
-       
-        {/* {
+        {
           user?.AccountType === ACCOUNT_TYPE.PERSONAL &&(
-            <Route path='/cart' element={<Cart/>}/>
+           <Route path='cart'>
+               <Route path='view-cart' element={<ViewCart/>}/>
+            </Route>
           )
-        } */}
+        }
        {/* {
             user?.AccountType === ACCOUNT_TYPE.BUSINESS && (
             <>

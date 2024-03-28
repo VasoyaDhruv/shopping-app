@@ -16,8 +16,7 @@ const Navbar = () => {
   const token = useSelector((state) => state.auth.token)
   const user = useSelector((state) => state.profile.user)
   const totalItems = useSelector((state) => state.cart.totalItem);
- console.log(totalItems)
-
+  
   useEffect(() => {
     function handleClickOutside(event) {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -43,7 +42,7 @@ const Navbar = () => {
   };
   return (
     <div >
-<nav className="bg-white border-gray-200 dark:bg-gray-900 fixed top-0 right-0 left-0 z-20">
+<nav className="bg-white border-gray-200 dark:bg-gray-900 fixed top-0 right-0 left-0 z-20 ">
   <div className="max-w-screen-xl flex  items-center justify-between mx-auto p-4">
   <Link to="/" className='flex items-center space-x-3 rtl:space-x-reverse'>
       <img src={logo} className=" rounded-full w-10 h-10" alt="Flowbite Logo" />
@@ -106,8 +105,8 @@ const Navbar = () => {
       token !== null &&(
         <div className='relative h-10 w-10 ' ref={menuRef} >
         <img className='rounded-full border border-gray-100 profile cursor-pointer' src={profileImg} alt="" onClick={toggleMenu} />
-        <ul className={`flex flex-col absolute top-[3.3rem] right-[-20px] items-center bg-white p-2 shadow-md ${menuVisible ? "opacity-1 duration-150" : "opacity-0 duration-150"}`}>
-          <Link className='text-black' to="/dashboard">Dashboard</Link>
+        <ul className={`flex flex-col absolute top-[3.3rem] right-[-20px] z-50 items-center bg-white p-2 shadow-md ${menuVisible ? "opacity-1 duration-150" : "opacity-0 duration-150"}`}>
+          <Link className='text-black' to="/dashboard/my-profile">Dashboard</Link>
           <Link className='text-black' to="/setting">Setting</Link>
         </ul>
        </div>
@@ -119,9 +118,9 @@ const Navbar = () => {
   </div>  
  
 </nav>
-<div className={`fixed h-[100%]  top-0 left-0 ${showCart ? ('bg-black z-10 duration-200'):('')} opacity-50`}></div>
-<div ref={menuRef}  >
-  {showCart && <Cart closebtn={toggleCart}/>} 
+<div className={`fixed h-[100vh] w-full  top-0 left-0 ${showCart ? ('bg-black z-50 duration-200'):('z-[-10]')} opacity-60`}></div>
+<div ref={menuRef} className={`${showCart ?('translate-x-0') :('translate-x-[100vh]')} fixed right-0 top-0 duration-100 z-50`} >
+  <Cart closebtn={toggleCart}/>
 </div>
 
 {/* <Cart/> */}

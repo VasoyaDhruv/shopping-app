@@ -26,11 +26,13 @@ const cartSlice = createSlice({
                 toast.error("already in cart");
                 return;
             }
-
+            
             state.cart.push(cartItem);
             state.totalItem++;  
             state.total += cartItem.price;
+            state.total = parseFloat((state.total).toFixed(2));
 
+           
             localStorage.setItem("cart", JSON.stringify(state.cart));
             localStorage.setItem("total", JSON.stringify(state.total));
             localStorage.setItem("totalItem", JSON.stringify(state.totalItem));
