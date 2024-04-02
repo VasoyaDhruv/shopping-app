@@ -5,6 +5,7 @@ import {  useSelector } from 'react-redux'
 import profileImg from "../../assets/836.jpg"
 import { ACCOUNT_TYPE } from '../../utils/contants'
 import {  AiOutlineShoppingCart } from "react-icons/ai"
+import { FaRegHeart } from "react-icons/fa";
 import Cart from '../Dashboard/Cart'
 
 
@@ -16,6 +17,7 @@ const Navbar = () => {
   const token = useSelector((state) => state.auth.token)
   const user = useSelector((state) => state.profile.user)
   const totalItems = useSelector((state) => state.cart.totalItem);
+  const totalItemWish = useSelector((state) => state.cart.totalItemWish);
   
   useEffect(() => {
     function handleClickOutside(event) {
@@ -71,6 +73,18 @@ const Navbar = () => {
    <div className=" flex gap-4 items-center  ">
      {
       user && user.AccountType !== ACCOUNT_TYPE.BUSINESS && (
+        <Link  className='relative' to='cart/wishlist'>
+          <FaRegHeart  className="text-2xl text-gray-100" />
+          {totalItemWish > 0 && (
+            <p className='absolute text-white bg-pink-800 rounded-full w-5 text-center bottom-4 left-3 h-5 text-[13px]' >
+              {totalItemWish}
+            </p>
+          )}
+        </Link>
+      )
+     }  
+     {
+      user && user.AccountType !== ACCOUNT_TYPE.BUSINESS && (
         <Link  className='relative' onClick={toggleCart} ref={menuRef}>
           <AiOutlineShoppingCart  className="text-2xl text-gray-100" />
           {totalItems > 0 && (
@@ -81,6 +95,7 @@ const Navbar = () => {
         </Link>
       )
      }  
+    
     
      {
       token === null &&(

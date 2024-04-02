@@ -12,6 +12,15 @@ const initialState = {
     totalItem: localStorage.getItem("totalItem")
         ? JSON.parse(localStorage.getItem("totalItem"))
         : 0,
+    wishlist: localStorage.getItem("wishlist")
+        ? JSON.parse(localStorage.getItem("wishlist"))
+        : [],
+    // totalwish: localStorage.getItem("totalwish")
+    //     ? JSON.parse(localStorage.getItem("totalwish"))
+    //     : 0,
+    totalItemWish: localStorage.getItem("totalItemWish")
+        ? JSON.parse(localStorage.getItem("totalItemWish"))
+        : 0,
 };
 
 const cartSlice = createSlice({
@@ -39,9 +48,24 @@ const cartSlice = createSlice({
 
             toast.success("Added to Cart");
         },
+        addToWishlist: (state, action) => {
+            const wishList = action.payload;
+            const index = state.wishlist.findIndex((item) => item.id === wishList.id);
+            if (index >= 0) {
+                toast.error('already added');
+                return;
+            }
+        
+            state.wishlist.push(wishList);
+            state.totalItemWish++;
+        
+            localStorage.setItem("wishlist", JSON.stringify(state.wishlist));
+            localStorage.setItem("totalItemWish", JSON.stringify(state.totalItemWish));
+        
+            toast.success("added to Wishlist");
+        },
         removeFromCart: (state, action) => {
-            const cartItem = action.payload;
-            console.log(cartItem);
+            const cartItem = action.payload;         
             const index = state.cart.findIndex(item => item.id);
             if (index >= 0) {
                 state.totalItem--;
@@ -56,6 +80,19 @@ const cartSlice = createSlice({
                 console.warn("Item not found in cart:", cartItem);
             }
         },
+        removeFromWishlist: (state, action) => {
+            const wishList= action.payload;
+            const index = state.wishlist.findIndex((item) => item.id === wishList.id);
+            if (index >= 0) {
+                state.totalItemWish--;
+                state.wishlist.splice(index, 1); // Remove 1 item at index
+                localStorage.setItem("wishlist", JSON.stringify(state.wishlist));
+                localStorage.setItem("totalItemWish", JSON.stringify(state.totalItemWish));
+                toast.success("Removed from wishlist");
+            } else {
+                console.warn("Item not found in wishlist:", wishListItem);
+            }
+        },
         resetCart: (state) => {
             state.cart = [];
             state.total = 0;
@@ -68,5 +105,5 @@ const cartSlice = createSlice({
     },
 });
 
-export const { addToCart, removeFromCart, resetCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, resetCart ,addToWishlist, removeFromWishlist} = cartSlice.actions;
 export default cartSlice.reducer;

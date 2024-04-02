@@ -16,6 +16,8 @@ import MyProfile from './components/Dashboard/MyProfile'
 import ViewCart from './components/Dashboard/ViewCart'
 import Cart from './components/Dashboard/Cart'
 import Orders from './components/Dashboard/Orders'
+import WishList from './components/core/Navbar/WishList'
+import Chatbot from './components/common/Chatbot'
 
 
 
@@ -25,7 +27,7 @@ function App() {
   return (
     <div>
      <Navbar/>
-     
+     {/* <Chatbot/> */}
      <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/login" element={<Login/>} />
@@ -49,6 +51,7 @@ function App() {
           user?.AccountType === ACCOUNT_TYPE.PERSONAL &&(
            <Route path='cart'>
                <Route path='view-cart' element={<ViewCart/>}/>
+               <Route path='wishlist' element={<WishList/>}/>
             </Route>
           )
         }

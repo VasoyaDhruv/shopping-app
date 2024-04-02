@@ -8,16 +8,19 @@ import {
     Button,
   } from "@material-tailwind/react";
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart } from '../../slices/cartSlice';
+import { addToCart, addToWishlist } from '../../slices/cartSlice';
 import { ACCOUNT_TYPE } from '../../utils/contants'
 import toast from 'react-hot-toast';
 import { CiShoppingCart } from "react-icons/ci";
+import { CiHeart } from "react-icons/ci";
+import { FaSearch } from 'react-icons/fa';
 
 const Product = ({post}) => {
   const user = useSelector((state) => state.profile.user)
   const dispatch = useDispatch()
 
   const [isHovered , setIsHovered] = useState(false)
+  const [iswishListHover , setWishListHover] = useState(false)
   const handleOnClick = () => {
     if (user.AccountType === ACCOUNT_TYPE.PERSONAL) {
       dispatch(addToCart(post));
@@ -25,21 +28,41 @@ const Product = ({post}) => {
       toast.error('Please login with a personal account');
     }
   };
+  const handleOnClick2 = () => {
+    if(user.AccountType === ACCOUNT_TYPE.PERSONAL){
+      dispatch(addToWishlist(post))
+    }else{
+      toast.error("You can only do this in your business account");
+    }
+    
+  }
   
   return (
 
 <Card className=" flex flex-col gap-3 p-0 hover:scale-[1.02] items-center rounded-md duration-200  border-2 relative group overflow-hidden">
   <div className='absolute z-10 -left-16 top-16 group-hover:left-5 duration-200  '>
   <div className='p-1 flex-col gap-1  text-black text-5xl  bg-white rounded-2xl shadow-md cursor-pointer'
-  onMouseEnter={()=> setIsHovered(true)}
-  onMouseLeave={()=> setIsHovered(false)}
-  >
-     <CiShoppingCart onClick={handleOnClick}/>
-  </div>
-          <p className={`text-center absolute whitespace-nowrap opacity-0 duration-200 ${isHovered ? ('-right-20 opacity-80'):('-right-20 opacity-0')}  p-1  rounded-t-lg rounded-e-lg top-0 text-white bg-black text-sm`}>Add to cart</p>
   
-
+  >
+    <div className='relative border-b border-gray-300'
+      onMouseEnter={()=> setIsHovered(true)}
+      onMouseLeave={()=> setIsHovered(false)}
+    >
+   <CiShoppingCart onClick={handleOnClick} className='w-10'/>
+   <p className={`text-center absolute whitespace-nowrap opacity-0 duration-200 ${isHovered ? ('-right-[5rem] opacity-80'):('-right-[6rem] opacity-0')}  p-1  rounded-t-lg rounded-e-lg top-0 text-white bg-black text-sm`}>Add to cart</p>
+   </div>
+   <div className='relative'
+    onMouseEnter={()=> setWishListHover(true)}
+    onMouseLeave={()=> setWishListHover(false)}
+  >
+   <CiHeart onClick={handleOnClick2} className='w-10'/>
+   <p className={`text-center absolute whitespace-nowrap opacity-0 duration-200 ${iswishListHover ? ('-right-[6.5rem] opacity-80'):('-right-[8rem] opacity-0')}  p-1  rounded-t-lg rounded-e-lg top-0 text-white bg-black text-sm`}>Add to Wishlist</p>
+   </div>
   </div>
+            
+  </div>
+  
+ 
   
 <CardHeader shadow={false} floated={false} className="flex p-5 ">
   <img src={post.image} className="object-fit h-[10rem] group-hover:scale-110 duration-200"/>

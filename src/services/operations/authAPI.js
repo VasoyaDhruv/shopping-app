@@ -33,7 +33,7 @@ export function login(email,password,navigate){
             localStorage.setItem("token", JSON.stringify(response.data.token))
             localStorage.setItem("user", JSON.stringify(response.data.user));
             
-            navigate("/dashboard")
+            navigate("/")
             toast.dismiss(loadingToast);
             toast.success("Login Successful")
         }

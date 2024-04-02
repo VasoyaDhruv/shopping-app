@@ -9,7 +9,7 @@ const Support = () => {
     <div className='container w-11/12 mx-auto mt-10'>
       <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5'>
       
-       <div className='flex items-center gap-5 p-5 bg-slate-300 rounded-md '>
+       <div className='flex items-center gap-5 p-5 bg-slate-300 rounded-md shadow-inner'>
          <div className='text-black'>
          <FiTruck  className='w-10 h-10'/>
          </div>
@@ -18,7 +18,7 @@ const Support = () => {
             <p className='text-black'>Orders from all item</p>
           </div>
        </div>
-       <div className='flex items-center gap-5 p-5 bg-slate-300 rounded-md '>
+       <div className='flex items-center gap-5 p-5 bg-slate-300 rounded-md shadow-inner'>
          <div className='text-black'>
          <FiDollarSign className='w-10 h-10'/>
          </div>
@@ -27,7 +27,7 @@ const Support = () => {
             <p className='text-black'>Maney back guarantee</p>
           </div>
        </div>
-       <div className='flex items-center gap-5 p-5 bg-slate-300 rounded-md '>
+       <div className='flex items-center gap-5 p-5 bg-slate-300 rounded-md shadow-inner'>
          <div className='text-black'>
          <CiDiscount1  className='w-10 h-10'/>
          </div>
@@ -36,7 +36,7 @@ const Support = () => {
             <p className='text-black'>One very order over $140.00</p>
           </div>
        </div>
-       <div className='flex items-center gap-5 p-5 bg-slate-300 rounded-md '>
+       <div className='flex items-center gap-5 p-5 bg-slate-300 rounded-md shadow-inner'>
          <div className='text-black'>
          <BiSupport  className='w-10 h-10'/>
          </div>
