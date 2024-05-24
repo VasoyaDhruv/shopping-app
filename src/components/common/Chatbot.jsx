@@ -53,9 +53,9 @@ const Chatbot = () => {
     <div className="fixed bottom-6 right-10 m-4 z-40 flex flex-col items-end gap-6">
       {/* Chatbot UI */}
       {isOpen && (
-        <div className="bg-blue-100 text-black shadow-md rounded-md p-4 w-64">
+        <div className="bg-blue-100 text-black shadow-md rounded-md p-2 w-64">
           {/* Chat messages */}
-          <div id="chat-container" className={`overflow-y-auto ${isOpen ? 'h-64' : 'h-0'}  `}>
+          <div id="chat-container" className={`overflow-y-auto ${isOpen ? 'h-64' : 'h-0'} `}>
             {messages.map((message, index) => (
               <div
                 key={index}

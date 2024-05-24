@@ -23,13 +23,13 @@ const WishList = () => {
         <h1 className='text-black font-bold opacity-50'> WishList</h1>
       </div>
  
-      <div className='flex flex-col sm:flex-row mt-10 justify-between gap-10 '>
+      <div className='flex flex-col sm:flex-row mt-10 justify-between gap-10 shadow-md'>
       {
           wishlist.length > 0 ? 
           (
             <div className='flex flex-col w-full gap-2'>
             <div className="overflow-x-auto">
-  <table className="min-w-full divide-y divide-gray-200">
+  <table className="min-w-full divide-y divide-gray-200 ">
     <tbody className="bg-white divide-y divide-gray-200">
       {wishlist.map((item, index) => (
         <tr key={index} className="bg-gray-50">

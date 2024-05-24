@@ -26,7 +26,6 @@ export function login(email,password,navigate){
                 throw new Error(response.data.message)
             }
 
-
             dispatch(setToken(response.data.token))
             dispatch(setUser(response.data.user))
 

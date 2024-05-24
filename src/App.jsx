@@ -27,7 +27,7 @@ function App() {
   return (
     <div>
      <Navbar/>
-     {/* <Chatbot/> */}
+     <Chatbot/>
      <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/login" element={<Login/>} />

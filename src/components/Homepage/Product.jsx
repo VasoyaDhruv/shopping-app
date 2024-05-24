@@ -32,7 +32,7 @@ const Product = ({post}) => {
     if(user.AccountType === ACCOUNT_TYPE.PERSONAL){
       dispatch(addToWishlist(post))
     }else{
-      toast.error("You can only do this in your business account");
+      toast.error("You can only do this in your personal account");
     }
     
   }
@@ -49,14 +49,14 @@ const Product = ({post}) => {
       onMouseLeave={()=> setIsHovered(false)}
     >
    <CiShoppingCart onClick={handleOnClick} className='w-10'/>
-   <p className={`text-center absolute whitespace-nowrap opacity-0 duration-200 ${isHovered ? ('-right-[5rem] opacity-80'):('-right-[6rem] opacity-0')}  p-1  rounded-t-lg rounded-e-lg top-0 text-white bg-black text-sm`}>Add to cart</p>
+   <p className={`text-center absolute whitespace-nowrap opacity-0 duration-200 ${isHovered ? ('-right-[5.4rem] opacity-80'):('-right-[6rem] opacity-0')}  p-1  rounded-t-lg rounded-e-lg top-0 text-white bg-black text-sm`}>Add to cart</p>
    </div>
    <div className='relative'
     onMouseEnter={()=> setWishListHover(true)}
     onMouseLeave={()=> setWishListHover(false)}
   >
    <CiHeart onClick={handleOnClick2} className='w-10'/>
-   <p className={`text-center absolute whitespace-nowrap opacity-0 duration-200 ${iswishListHover ? ('-right-[6.5rem] opacity-80'):('-right-[8rem] opacity-0')}  p-1  rounded-t-lg rounded-e-lg top-0 text-white bg-black text-sm`}>Add to Wishlist</p>
+   <p className={`text-center absolute whitespace-nowrap opacity-0 duration-200 ${iswishListHover ? ('-right-[6.9rem] opacity-80'):('-right-[8rem] opacity-0')}  p-1  rounded-t-lg rounded-e-lg top-0 text-white bg-black text-sm`}>Add to Wishlist</p>
    </div>
   </div>
             

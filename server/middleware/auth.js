@@ -10,37 +10,37 @@ exports.auth = async (req, res, next)=>{
         })
     }
 
-    try{
-        const decode = jwt.verify(token,process.env.JWT_SECRET);
-        req.user = decode.user;
-        next();
-    }catch(error){
-        return res.status(401).json({
-            success:false,
-            message:"Invalid token"
-        })
-    }
+    // try{
+    //     const decode = jwt.verify(token,process.env.JWT_SECRET);
+    //     req.user = decode.user;
+    //     next();
+    // }catch(error){
+    //     return res.status(401).json({
+    //         success:false,
+    //         message:"Invalid token"
+    //     })
+    // }
 }
 
-exports.isBUSINESS = async (req, res,next) =>{
+exports.isBusiness = async (req, res,next) =>{
     try{
-        if(req.user.AccountType !== "BUSINESS"){
+        if(req.user.AccountType !== "Business"){
             return res.status(401).json({
                 success:false,
-                message:'This is Protected route for BUSINESSs'
+                message:'This is Protected route for Business'
             });
         }
         next();
     }catch(error){
         return res.status(500).json({
             success:false,
-            message:"BUSINESS is not verified.please try again "
+            message:"AccountType is not verified.please try again "
         })
     }
 }
-exports.isCustomer = async (req,res,next)=>{
+exports.isPersonal = async (req,res,next)=>{
     try{
-        if(req.user.AccountType !== "Customer"){
+        if(req.user.AccountType !== "Personal"){
             return res.status(401).json({
                 success:false,
                 message:"This is Protected route for Customer"

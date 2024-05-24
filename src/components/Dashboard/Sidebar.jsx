@@ -23,8 +23,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../services/operations/authAPI";
 import toast from 'react-hot-toast'
 import ConfirmationModal from "../common/ConfirmationModal";
+import { ACCOUNT_TYPE } from '../../utils/contants';
+
 const Sidebar = () => {
   const token = useSelector((state) => state.auth.token);
+  const user = useSelector((state) => state.profile.user);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [confirmationModal, setConfirmationModal] = useState(null)
@@ -51,15 +55,20 @@ const Sidebar = () => {
             Dashboard
           </ListItem> */}
        
-
-          <Link to='dashboard/orders'>
-          <ListItem className={location.pathname === "/dashboard/orders" ? 'text-blue-500':'text-white'}>
-            <ListItemPrefix>
-              <ShoppingBagIcon className="h-5 w-5 mr-2" />
-            </ListItemPrefix>
-            Orders
-          </ListItem>
-          </Link>
+          
+         
+          {
+            user?.AccountType === ACCOUNT_TYPE.PERSONAL &&(
+              <Link to='dashboard/orders'>
+              <ListItem className={location.pathname === "/dashboard/orders" ? 'text-blue-500':'text-white'}>
+                <ListItemPrefix>
+                  <ShoppingBagIcon className="h-5 w-5 mr-2" />
+                </ListItemPrefix>
+                Orders
+              </ListItem>
+              </Link>
+            )
+          }
 
           <ListItem className={location.pathname === "/dashboard/inbox" ? 'text-blue-500':'text-white'}>
             <ListItemPrefix>
