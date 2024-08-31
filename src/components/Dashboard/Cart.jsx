@@ -3,7 +3,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { removeFromCart } from '../../slices/cartSlice'
 import { IoMdClose } from "react-icons/io";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Cart = ({closebtn}) => {
     const cart = useSelector((state) => state.cart.cart)
@@ -43,13 +43,19 @@ const Cart = ({closebtn}) => {
     </div>
     <div className='flex justify-between p-2 pb-4 text-[18px] font-semibold text-black'>
       <h2>Subtotal:</h2>
-      <h2>${total}</h2>
+      <h2>${total > 0 ? total :"0"}</h2>
     </div>
     <div className='flex flex-col gap-2 pb-3 '>
    <Link to='cart/view-cart'>
-   <button className='p-3  w-full bg-black text-white hover:bg-blue-600 duration-200 '>View Cart</button>
+     <button className='p-3  w-full bg-black text-white hover:bg-blue-600 duration-200 '>View Cart</button>
    </Link>
-      <button className='p-3 border-[1px] border-black w-full text-black hover:bg-blue-500 duration-200 hover:text-white hover:border-blue-500'>Checkout</button>
+   <Link to='cart/view-cart'>
+   <button
+          className="p-3 border border-black w-full text-black hover:bg-blue-500 duration-200 hover:text-white hover:border-blue-500"
+        >
+          Checkout
+        </button>
+   </Link>
     </div>
     </div>
 </div>

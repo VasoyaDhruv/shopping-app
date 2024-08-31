@@ -25,20 +25,21 @@ const Product = ({post}) => {
   const [iswishListHover , setWishListHover] = useState(false)
   const handleOnClick = () => {
     dispatch(addToCart(post));
-    if (user.AccountType === ACCOUNT_TYPE.PERSONAL) {
-      dispatch(addToCart(post));
-    } else{
-      toast.error('Please login with a personal account');
-      navigate('/login')
-    }
+    // if (user.AccountType === ACCOUNT_TYPE.PERSONAL) {
+    //   dispatch(addToCart(post));
+    // } else{
+    //   toast.error('Please login with a personal account');
+    //   // navigate('/login')
+    // }
     
   };
   const handleOnClick2 = () => {
-    if(user.AccountType === ACCOUNT_TYPE.PERSONAL){
-      dispatch(addToWishlist(post))
-    }else{
-      toast.error("You can only do this in your personal account");
-    }
+    dispatch(addToWishlist(post))
+    // if(user.AccountType === ACCOUNT_TYPE.PERSONAL){
+    //   dispatch(addToWishlist(post))
+    // }else{
+    //   toast.error("You can only do this in your personal account");
+    // }
     
   }
   

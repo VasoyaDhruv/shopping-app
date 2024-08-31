@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const PaymentModal = ({ isOpen, onClose }) => {
+const PaymentModal = ({ isOpen, onClose ,onSuccess }) => {
   const [paymentMethod, setPaymentMethod] = useState('Credit Card');
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
   const [isQrCodeModalOpen, setIsQrCodeModalOpen] = useState(false);
@@ -68,6 +68,7 @@ const PaymentModal = ({ isOpen, onClose }) => {
 
     // If validation passes, show success modal
     setIsSuccessModalOpen(true);
+    onSuccess();
   };
 
   const closeSuccessModal = () => {

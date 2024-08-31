@@ -22,6 +22,7 @@ import About from './pages/About'
 import Services from './pages/Services'
 import Contact from './pages/Contact'
 import Pricing from './pages/Pricing'
+import CurrentOrders from './pages/CurrentOrders'
 
 
 
@@ -40,6 +41,8 @@ function App() {
         <Route path="/pricing" element={<Pricing/>} />
         <Route path="/login" element={<Login/>} />
         <Route path="/signup" element={<Signup/>} />
+        <Route path="/orders" element={<CurrentOrders/>} />
+
 
 
         <Route
@@ -55,14 +58,13 @@ function App() {
 
 
        
-        {
-          user?.AccountType === ACCOUNT_TYPE.PERSONAL &&(
-           <Route path='cart'>
+        {/* {
+          user?.AccountType === ACCOUNT_TYPE.PERSONAL &&( */}
+            <Route path='cart'>
                <Route path='view-cart' element={<ViewCart/>}/>
                <Route path='wishlist' element={<WishList/>}/>
             </Route>
-          )
-        }
+          {/* )} */}
        {/* {
             user?.AccountType === ACCOUNT_TYPE.BUSINESS && (
             <>

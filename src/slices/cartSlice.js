@@ -21,6 +21,9 @@ const initialState = {
     totalItemWish: localStorage.getItem("totalItemWish")
         ? JSON.parse(localStorage.getItem("totalItemWish"))
         : 0,
+    orders: localStorage.getItem("orders")
+        ? JSON.parse(localStorage.getItem("orders"))
+        : [],
 };
 
 const cartSlice = createSlice({
@@ -65,17 +68,19 @@ const cartSlice = createSlice({
             toast.success("added to Wishlist");
         },
         removeFromCart: (state, action) => {
-            const cartItem = action.payload;         
-            const index = state.cart.findIndex(item => item.id);
+            const cartItem = action.payload;
+            const index = state.cart.findIndex(item => item.id === cartItem.id);
+        
             if (index >= 0) {
-                state.totalItem--;
-                state.total -= state.cart[index].price;
-                state.total = parseFloat((state.total).toFixed(2));
+                state.totalItem = Math.max(state.totalItem - 1, 0);  // Ensure it doesn't go negative
+                state.total = Math.max(state.total - (state.cart[index].price || 0), 0); // Subtract price or 0 if undefined
+                state.total = parseFloat(state.total.toFixed(2)); // Ensure total is rounded
                 state.cart.splice(index, 1); // Remove 1 item at index
+        
                 localStorage.setItem("cart", JSON.stringify(state.cart));
                 localStorage.setItem("total", JSON.stringify(state.total));
                 localStorage.setItem("totalItem", JSON.stringify(state.totalItem));
-                toast.success("Removed from cart");
+                // toast.success("Removed from cart");
             } else {
                 console.warn("Item not found in cart:", cartItem);
             }
@@ -102,8 +107,35 @@ const cartSlice = createSlice({
             localStorage.removeItem("total");
             localStorage.removeItem("totalItem");
         },
+        addToOrder: (state, action) => {
+            const orderItem = action.payload;
+            state.orders.push(orderItem)
+            state.totalItem++;  
+            state.total += orderItem.price;
+            state.total = parseFloat((state.total).toFixed(2));
+            localStorage.setItem("orders", JSON.stringify(state.orders));
+            toast.success("order successfull");
+        },  
+        removeFromOrder: (state, action) => {
+            const orderItem = action.payload;
+            // Find the index of the order item to be removed
+            const index = state.orders.findIndex(order => order.id === orderItem.id);
+            if (index >= 0) {
+                state.totalItem--;  
+                // Remove the order item from the orders array
+                state.orders.splice(index, 1);
+        
+                // Update local storage
+                localStorage.setItem("orders", JSON.stringify(state.orders));
+        
+                toast.success("Order successfully canceled");
+            } else {
+                console.warn("Order not found:", orderItem);
+            }
+        },
+        
     },
 });
 
-export const { addToCart, removeFromCart, resetCart ,addToWishlist, removeFromWishlist} = cartSlice.actions;
+export const { addToCart, removeFromCart, resetCart ,addToWishlist, removeFromWishlist,addToOrder,removeFromOrder} = cartSlice.actions;
 export default cartSlice.reducer;

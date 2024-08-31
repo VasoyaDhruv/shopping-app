@@ -76,7 +76,7 @@ const WishList = () => {
 
           </div>
           ):(
-            <div className=' w-full text-center pb-16'>
+            <div className=' w-full text-center pb-16 h-[35vh]'>
               <p className='text-black mt-10 text-4xl pb-16'>No Wishlist Items Found</p>
               <Link to='/'>
                  <button className='p-3  px-20 bg-black text-white hover:bg-blue-600 duration-200 '>Continue Shopping</button>
@@ -121,7 +121,7 @@ const WishList = () => {
 
       </div>
     </div>
-      <Footer/>
+      {/* <Footer/> */}
     </>
   )
 }

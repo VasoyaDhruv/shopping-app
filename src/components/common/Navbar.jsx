@@ -16,9 +16,10 @@ const Navbar = () => {
 
   const token = useSelector((state) => state.auth.token)
   const user = useSelector((state) => state.profile.user)
-  const totalItems = useSelector((state) => state.cart.totalItem);
+  // const totalItems = useSelector((state) => state.cart.totalItem);
+  const cart = useSelector((state) => state.cart.cart);
+  const totalItems = cart.length;
   const totalItemWish = useSelector((state) => state.cart.totalItemWish);
-  
   useEffect(() => {
     function handleClickOutside(event) {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -68,11 +69,14 @@ const Navbar = () => {
       <li>
         <Link to="/contact" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</Link>
       </li>
+      <li>
+        <Link to="/orders" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Orders</Link>
+      </li>
     </ul>
   </div>
    <div className=" flex gap-4 items-center  ">
-     {
-      user && user.AccountType !== ACCOUNT_TYPE.BUSINESS && (
+     {/* {
+      user && user.AccountType !== ACCOUNT_TYPE.BUSINESS && ( */}
         <Link  className='relative' to='cart/wishlist'>
           <FaRegHeart  className="text-2xl text-gray-100" />
           {totalItemWish > 0 && (
@@ -81,10 +85,9 @@ const Navbar = () => {
             </p>
           )}
         </Link>
-      )
-     }  
-     {
-      user && user.AccountType !== ACCOUNT_TYPE.BUSINESS && (
+      {/* )}   */}
+     {/* {
+      user && user.AccountType !== ACCOUNT_TYPE.BUSINESS && ( */}
         <Link  className='relative' onClick={toggleCart} ref={menuRef}>
           <AiOutlineShoppingCart  className="text-2xl text-gray-100" />
           {totalItems > 0 && (
@@ -93,8 +96,7 @@ const Navbar = () => {
             </p>
           )}
         </Link>
-      )
-     }  
+      {/* )}   */}
     
     
      {
@@ -135,7 +137,7 @@ const Navbar = () => {
 </nav>
 <div className={`fixed h-[100vh] w-full  top-0 left-0 ${showCart ? ('bg-black z-50 duration-200'):('z-[-10]')} opacity-60`}></div>
 <div ref={menuRef} className={`${showCart ?('translate-x-0') :('translate-x-[100vh]')} fixed right-0 top-0 duration-100 z-50`} >
-  <Cart closebtn={toggleCart}/>
+  <Cart  ref={menuRef} closebtn={toggleCart}/>
 </div>
 
 {/* <Cart/> */}
