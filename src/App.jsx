@@ -18,6 +18,10 @@ import Cart from './components/Dashboard/Cart'
 import Orders from './components/Dashboard/Orders'
 import WishList from './components/core/Navbar/WishList'
 import Chatbot from './components/common/Chatbot'
+import About from './pages/About'
+import Services from './pages/Services'
+import Contact from './pages/Contact'
+import Pricing from './pages/Pricing'
 
 
 
@@ -30,6 +34,10 @@ function App() {
      <Chatbot/>
      <Routes>
         <Route path="/" element={<Home/>} />
+        <Route path="/about" element={<About/>} />
+        <Route path="/services" element={<Services/>} />
+        <Route path="/contact" element={<Contact/>} />
+        <Route path="/pricing" element={<Pricing/>} />
         <Route path="/login" element={<Login/>} />
         <Route path="/signup" element={<Signup/>} />
 
@@ -63,7 +71,7 @@ function App() {
           )
         } */}
      </Routes>
- 
+     <Footer/>
      
     </div>
   )

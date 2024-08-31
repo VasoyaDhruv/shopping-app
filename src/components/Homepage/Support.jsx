@@ -4,7 +4,7 @@ import { FiDollarSign } from "react-icons/fi";
 import { CiDiscount1 } from "react-icons/ci";
 import { BiSupport } from "react-icons/bi";
 
-const Support = () => {
+const Support = () => {                                  
   return (
     <div className='container w-11/12 mx-auto mt-10'>
       <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5'>

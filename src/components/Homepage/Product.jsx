@@ -14,19 +14,24 @@ import toast from 'react-hot-toast';
 import { CiShoppingCart } from "react-icons/ci";
 import { CiHeart } from "react-icons/ci";
 import { FaSearch } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 const Product = ({post}) => {
   const user = useSelector((state) => state.profile.user)
   const dispatch = useDispatch()
+  const navigate = useNavigate();
 
   const [isHovered , setIsHovered] = useState(false)
   const [iswishListHover , setWishListHover] = useState(false)
   const handleOnClick = () => {
+    dispatch(addToCart(post));
     if (user.AccountType === ACCOUNT_TYPE.PERSONAL) {
       dispatch(addToCart(post));
-    } else {
+    } else{
       toast.error('Please login with a personal account');
+      navigate('/login')
     }
+    
   };
   const handleOnClick2 = () => {
     if(user.AccountType === ACCOUNT_TYPE.PERSONAL){

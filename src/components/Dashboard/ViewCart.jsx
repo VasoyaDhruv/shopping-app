@@ -4,6 +4,7 @@ import { IoMdClose } from "react-icons/io";
 import { removeFromCart } from '../../slices/cartSlice';
 import { Link } from 'react-router-dom';
 import Footer from '../Footer';
+import PaymentModal from '../modals/PaymentModal';
 
 const ViewCart = () => {
   const cart = useSelector((state) => state.cart.cart);
@@ -37,6 +38,10 @@ const ViewCart = () => {
     }
     setTotalAmount(total + shippingCost);
   };
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   return (
     <>
@@ -100,8 +105,11 @@ const ViewCart = () => {
               <p className="text-gray-700">${totalAmount}</p>
             </div>
             <Link to="" className="block mt-4">
-              <button className="w-full py-2 bg-blue-600 text-white font-semibold rounded hover:bg-blue-700">Proceed to Checkout</button>
+              <button className="w-full py-2 bg-blue-600 text-white font-semibold rounded hover:bg-blue-700"
+                onClick={openModal}
+              >Proceed to Checkout</button>
             </Link>
+            <PaymentModal isOpen={isModalOpen} onClose={closeModal} />
           </div>
         </div>
       </div>
